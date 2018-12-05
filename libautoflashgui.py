@@ -7,7 +7,7 @@
 import mysrp as srp
 from urllib.parse import urlencode
 
-import binascii, json, urllib, bs4, socket, time
+import binascii, json, urllib, socket, time
 from robobrowser import RoboBrowser
 
 def srp6authenticate(br, host, username, password):
