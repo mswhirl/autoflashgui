@@ -89,7 +89,7 @@ class Application(tk.Frame):
         self.lengthSummary = tk.Label(self, text='length goes here')
         self.lengthSummary.grid(row=70, column=2)
 
-        tk.Label(self, text='Ping or DDNS:').grid(row=80, column=1)
+        tk.Label(self, text='Command Injection Method\n(Ping, DDNS, DDNS Basic):').grid(row=80, column=1)
         self.methodAction = tk.Entry(self, width=16)
         self.methodAction.grid(row=80, column=2)
 

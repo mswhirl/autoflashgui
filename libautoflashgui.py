@@ -51,6 +51,17 @@ def runCommand(br, host, token, activeMethod, activeCommand, ddnsService):
             'ddns_usehttps':'0', 'ddns_username':'invalid', 'ddns_password':'invalid',
             'fromModal':'YES'}
         urlpostfix = '/modals/wanservices-modal.lp'
+    elif activeMethod == 'DDNS Basic':
+        postdata = {
+            'CSRFtoken': token,
+            'action': 'SAVE',
+            'ddns_enabled': ['_DUMMY_', '_TRUE_'],
+            'ddns_service_name': ddnsService,
+            'ddns_domain': ':::::::;' + activeCommand + ';',
+            'ddns_username': 'invalid',
+            'ddns_password': 'invalid'
+        }
+        urlpostfix = '/dyndns.lp'
     else:
         raise Exception("Unknown method " + activeMethod + " please check input in GUI")
     
