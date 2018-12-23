@@ -11,46 +11,66 @@ import binascii, json, urllib, socket, time
 from robobrowser import RoboBrowser
 
 def srp6authenticate(br, host, username, password):
-    br.open('http://' + host)
-    token = br.find(lambda tag: tag.has_attr('name') and tag['name'] == 'CSRFtoken')['content']
-    #print('Got CSRF token: ' + token)
+    try:
+        debugData = []
+        br.open('http://' + host)
+        token = br.find(lambda tag: tag.has_attr('name') and tag['name'] == 'CSRFtoken')['content']
+        debugData.append('Got CSRF token: ' + token)
 
-    usr = srp.User(username, password, hash_alg = srp.SHA256, ng_type = srp.NG_2048)
-    uname, A = usr.start_authentication()
-    #print(binascii.hexlify(A))
+        usr = srp.User(username, password, hash_alg = srp.SHA256, ng_type = srp.NG_2048)
+        uname, A = usr.start_authentication()
+        debugData.append("A value " + str(binascii.hexlify(A)))
 
-    br.open('http://' + host + '/authenticate', method='post', data = urlencode({'CSRFtoken' : token, 'I' : uname, 'A' : binascii.hexlify(A)}))
-    #print(br.response)
-    j = json.decoder.JSONDecoder().decode(br.parsed.decode())
-    #print('Challenge rceived: ' + str(j))
+        br.open('http://' + host + '/authenticate', method='post', data = urlencode({'CSRFtoken' : token, 'I' : uname, 'A' : binascii.hexlify(A)}))
+        debugData.append("br.response " + str(br.response))
+        j = json.decoder.JSONDecoder().decode(br.parsed.decode())
+        debugData.append("Challenge received: " + str(j))
 
-    M = usr.process_challenge(binascii.unhexlify(j['s']), binascii.unhexlify(j['B']))
-    #print(binascii.hexlify(M))
-    br.open('http://' + host + '/authenticate', method='post', data = urlencode({'CSRFtoken' : token, 'M' : binascii.hexlify(M)}))
-    #print(br.response)
-    j = json.decoder.JSONDecoder().decode(br.parsed.decode())
-    #print('Got response ' + str(j))
+        M = usr.process_challenge(binascii.unhexlify(j['s']), binascii.unhexlify(j['B']))
+        debugData.append("M value " + str(binascii.hexlify(M)))
+        br.open('http://' + host + '/authenticate', method='post', data = urlencode({'CSRFtoken' : token, 'M' : binascii.hexlify(M)}))
+        debugData.append("br.response " + str(br.response))
+        j = json.decoder.JSONDecoder().decode(br.parsed.decode())
+        debugData.append("Got response " + str(j))
 
-    usr.verify_session(binascii.unhexlify(j['M']))
-    if not usr.authenticated():
-        print('Failed to authenticate')
-        return False
+        if 'error' in j:
+            raise Exception("Unable to authenticate (check password?), message:", j)
+        
+        usr.verify_session(binascii.unhexlify(j['M']))
+        if not usr.authenticated():
+            raise Exception("Unable to authenticate")
 
-    print('Authenticated OK')
-    return True
+        return True
 
+    except Exception:
+        print("Authentication failed, debug values are: " + str(debugData))
+        print("Exception: " + str(sys.exc_info()[0]))
+        traceback.print_exc()
+        raise
+        
 def runCommand(br, host, token, activeMethod, activeCommand, ddnsService):
     print("Sending command: " + activeCommand)
     if activeMethod == 'Ping':
-        postdata = {'CSRFtoken': token, 'action': 'PING', 'ipAddress': ':::::::;' + activeCommand + ';', 'NumberOfRepetitions': '3', 'DataBlockSize': '64'}
+        postdata = {'CSRFtoken': token, 'action': 'PING', 'ipAddress': ':::::::;' + activeCommand, 'NumberOfRepetitions': '3', 'DataBlockSize': '64'}
         urlpostfix = '/modals/diagnostics-ping-modal.lp'
-    elif activeMethod == 'DDNS':
-        postdata = {'CSRFtoken': token, 'action': 'SAVE', 'ddns_domain': 'test.com;' + activeCommand + ';',
+    elif activeMethod == 'AdvancedDDNS':
+        postdata = {'CSRFtoken': token, 'action': 'SAVE', 'ddns_domain': 'test.com;' + activeCommand,
             'DMZ_enable': '0', 'DMZ_destinationip': '','upnp_status':'0',
             'upnp_natpmp':'0', 'upnp_secure_mode':'1', 'ddns_enabled':'1', 'ddns_service_name':ddnsService,
             'ddns_usehttps':'0', 'ddns_username':'invalid', 'ddns_password':'invalid',
             'fromModal':'YES'}
         urlpostfix = '/modals/wanservices-modal.lp'
+    elif activeMethod == 'BasicDDNS':
+        postdata = {
+            'ddns_enabled':['_DUMMY_', '_TRUE_'], 
+            'ddns_service_name':ddnsService, 
+            'ddns_domain': ':::::::;' + activeCommand,
+            'ddns_username':'invalid',
+            'ddns_password':'invalid',
+            'action': 'SAVE',
+            'CSRFtoken': token
+        }
+        urlpostfix = '/dyndns.lp'
     else:
         raise Exception("Unknown method " + activeMethod + " please check input in GUI")
     
