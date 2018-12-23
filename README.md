@@ -1,10 +1,12 @@
-# autoflashgui
+# AutoFlashGUI
 
 Utility to flash firmware to modems and run setup commands after the flash has completed
 
+Please see https://whirlpool.net.au/wiki/hack_technicolor for the full guide for using the utility.
+
 ## Installation
 
-The codebase requires Python 3.6 (on any OS) and pip; the following instructions
+The codebase requires Python 3.7 (on any OS) and pip; the following instructions
 rely on you having the Python executables on your PATH.  If Python isn't
 present on your PATH and you get a *not found* error, reference the
 executables using their absolute paths.
