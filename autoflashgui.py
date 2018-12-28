@@ -28,6 +28,63 @@
 import tkinter as tk
 import libautoflashgui, socket
 
+# Multilanguage interface code based on adbtools2 program code
+# adbtools home page: https://github.com/digiampietro/adbtools2
+
+
+import os
+import sys
+import time
+import ctypes
+import os.path
+import locale
+import ctypes
+import uuid
+
+from pathlib import Path
+
+import gettext
+
+os.system("cls") # clear screen
+
+# ********************************** Define startup folder
+
+mydir    = sys.path[0]              # not correct on exe file from pyinstaller
+mydir    = os.path.dirname(os.path.realpath(__file__))
+
+# ********************************** Define multi-langauge support
+
+def language_set(lan):
+    global _
+    if (os.path.isdir(mydir + '/locale/' + lan)):
+        slan = gettext.translation('autoflashgui', localedir='locale', languages=[lan])
+        slan.install()
+    else:
+        _ = lambda s: s
+
+def language_default():
+    lan = 'EN'
+    try:
+        if sys.argv[1] == '-l':
+            lan = sys.argv[2]
+            del sys.argv[1:3]
+    except:
+        (lancode, lanenc) = locale.getdefaultlocale()
+        lancode2=lancode[0:2]
+        if (os.path.isdir(mydir + '/locale/' + lancode)):
+            lan = lancode
+        if (os.path.isdir(mydir + '/locale/' + lancode2)):
+            lan = lancode2
+        else:
+            lan = 'en'
+    return lan
+
+lan = language_default()
+language_set(lan) 
+
+print (_('UI language = ') + lan)
+
+
 def getDefaults():
     config = {}
     global defaultMethods
@@ -59,29 +116,29 @@ class Application(tk.Frame):
         self.createWidgets()
 
     def createWidgets(self):
-        tk.Label(self, text='Target IP:').grid(row=0, column=1)
+        tk.Label(self, text=_('Target IP:')).grid(row=0, column=1)
         self.host = tk.Entry(self, width=64)
         self.host.grid(row=0, column=2)
 
-        tk.Label(self, text='Username:').grid(row=10, column=1)
+        tk.Label(self, text=_('Username:')).grid(row=10, column=1)
         self.username = tk.Entry(self, width=64)
         self.username.grid(row=10, column=2)
 
-        tk.Label(self, text='Password:').grid(row=20, column=1)
+        tk.Label(self, text=_('Password:')).grid(row=20, column=1)
         self.password = tk.Entry(self, width=64)
         self.password.grid(row=20, column=2)
 
-        tk.Label(self, text='Firmware File Name:').grid(row=30, column=1)
+        tk.Label(self, text=_('Firmware File Name:')).grid(row=30, column=1)
         self.firmwarefile = tk.Entry(self, width=64)
         self.firmwarefile.grid(row=30, column=2)
 
         self.flashfirmware = tk.IntVar()
-        tk.Checkbutton(self, text="Flash firmware?", variable=self.flashfirmware, width=64).grid(row=40, column=2)
+        tk.Checkbutton(self, text=_("Flash firmware?"), variable=self.flashfirmware, width=64).grid(row=40, column=2)
 
         self.expertmode = tk.IntVar()
-        tk.Checkbutton(self, text="I really truly know what I'm doing and I want to mess with the commands to tweak the firmware and I promise not to ask for help. :)  I understand that if the unsplit (if selected) or split command is too long (suspected limit of about 245 on TG799) or if I use special characters it may fail.  Avoid using & or ; (except splitting commands, unless escaped as a character code?).", variable=self.expertmode, command=self.expertmodeswitch, width=64, height=5, anchor=tk.W, justify=tk.LEFT, wraplength=400).grid(row=50, column=2)
+        tk.Checkbutton(self, text=_("I really truly know what I'm doing and I want to mess with the commands to tweak the firmware and I promise not to ask for help. :)  I understand that if the unsplit (if selected) or split command is too long (suspected limit of about 245 on TG799) or if I use special characters it may fail.  Avoid using & or ; (except splitting commands, unless escaped as a character code?)."), variable=self.expertmode, command=self.expertmodeswitch, width=64, height=5, anchor=tk.W, justify=tk.LEFT, wraplength=400).grid(row=50, column=2)
         self.commandEval = tk.StringVar()
-        tk.Label(self, text='Command:').grid(row=60, column=1)
+        tk.Label(self, text=_('Command:')).grid(row=60, column=1)
         self.command = tk.Entry(self, width=64, textvariable=self.commandEval)
         self.command.bind('<Key>', (lambda _: self.commandChange()))
         self.command.grid(row=60, column=2)
@@ -89,26 +146,26 @@ class Application(tk.Frame):
         self.lengthSummary = tk.Label(self, text='length goes here')
         self.lengthSummary.grid(row=70, column=2)
 
-        tk.Label(self, text='Ping, AdvancedDDNS, BasicDDNS:').grid(row=80, column=1)
+        tk.Label(self, text=_('Ping, AdvancedDDNS, BasicDDNS:')).grid(row=80, column=1)
         self.methodAction = tk.Entry(self, width=16)
         self.methodAction.grid(row=80, column=2)
 
-        tk.Label(self, text='DDNS Service:').grid(row=90, column=1)
+        tk.Label(self, text=_('DDNS Service:')).grid(row=90, column=1)
         self.ddnsService = tk.Entry(self, width=64)
         self.ddnsService.grid(row=90, column=2)
 
         self.splitActive = tk.IntVar()
         self.splitActive.set(1)
-        tk.Checkbutton(self, text="Split the given command on semicolons to try and use shorter commands with a 5 second delay between commands.  If an individual command fails it should not affect subsequent commands.", variable=self.splitActive, width=64, height=3, anchor=tk.W, justify=tk.LEFT, wraplength=400).grid(row=100, column=2)
+        tk.Checkbutton(self, text=_("Split the given command on semicolons to try and use shorter commands with a 5 second delay between commands.  If an individual command fails it should not affect subsequent commands."), variable=self.splitActive, width=64, height=3, anchor=tk.W, justify=tk.LEFT, wraplength=400).grid(row=100, column=2)
 
-        self.runButton = tk.Button(self, text='Run', command=self.run, width=64)
+        self.runButton = tk.Button(self, text=_('Run'), command=self.run, width=64)
         self.runButton.grid(row=110, column=2)
 
-        tk.Label(self, text='Status:').grid(row=120, column=1)
-        self.status = tk.Label(self, text='Check the console window for detailed status or major failures (exceptions - try re-running a few times)', width=64, height=4, anchor=tk.W, justify=tk.LEFT, wraplength=400)
+        tk.Label(self, text=_('Status:')).grid(row=120, column=1)
+        self.status = tk.Label(self, text=_('Check the console window for detailed status or major failures (exceptions - try re-running a few times)'), width=64, height=4, anchor=tk.W, justify=tk.LEFT, wraplength=400)
         self.status.grid(row=120, column=2)
 
-        tk.Label(self, text='Select to change to correct defaults:').grid(row=0, column=3)
+        tk.Label(self, text=_('Select to change to correct defaults:')).grid(row=0, column=3)
 
         self.method = tk.StringVar()
         self.method.set(self.defaults['startupVariant'])
@@ -187,7 +244,7 @@ class Application(tk.Frame):
 
 
     def run(self):
-        self.status.config(text='Check the console window for detailed status or major failures')
+        self.status.config(text=_('Check the console window for detailed status or major failures'))
         res = libautoflashgui.mainScript(self.host.get(), self.username.get().encode(), self.password.get().encode(), self.flashfirmware.get(), self.firmwarefile.get(), self.flashSleepDelay, self.methodAction.get(), self.command.get(), self.splitActive.get(), self.ddnsService.get(), self.connectRetryDelay, self.interCommandDelay)
         self.status.config(text=res)
         return
@@ -196,5 +253,6 @@ class Application(tk.Frame):
 if __name__=='__main__':
     socket.setdefaulttimeout(5)
     app = Application()
-    app.master.title('Technicolour modem flash and unlock utility by Mark Smith.  License: GPLv3.')
+    appversion="23.12.2018"
+    app.master.title(_("Technicolor modem flash and unlock utility (v. ") + appversion + _(") - By Mark Smith - License: GPLv3"))
     app.mainloop()
