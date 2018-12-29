@@ -23,7 +23,7 @@
 ##variant=MyRepublic,Ping,dyndns.com,echo "root:root"|chpasswd;sed -i -e "s/'0'/'1'/" -e "s/'off'/'on'/" /etc/config/dropbear;/etc/init.d/cwmpd stop;/etc/init.d/cwmpd disable;/etc/init.d/cwmpdboot disable;killall dropbear;dropbear
 ##variant=Tiscali,Ping,dyndns.com,sed -i 's#root:/bin/false#root:/bin/ash#' /etc/passwd;uci set dropbear.@dropbear[0].PasswordAuth='on';uci set dropbear.@dropbear[0].Interface='lan';uci set dropbear.@dropbear[0].RootPasswordAuth='on';uci set dropbear.@dropbear[0].enable='1';uci commit;echo -e "root\nroot"|passwd;/etc/init.d/dropbear restart
 ##variant=DGA4130 AGTEF 1.0.3,Ping,dyndns.com,sed -i '1croot:x:0:0:root:/root:/bin/ash' /etc/passwd;uci set dropbear.@dropbear[0].RootPasswordAuth='on';uci set dropbear.@dropbear[0].enable='1';uci commit;echo -e "root\nroot"|passwd;/etc/init.d/dropbear restart
-##variant=DGA4132 AGTHP 1.0.3,DDNS,dyndns.it,sed -i 's#root:/bin/false#root:/bin/ash#' /etc/passwd;uci set dropbear.lan.enable=1;uci set dropbear.lan.RootPasswordAuth=on;uci commit;echo -e "root\nroot"|passwd;/etc/init.d/dropbear restart
+##variant=DGA4132 AGTHP 1.0.3,AdvancedDDNS,dyndns.it,sed -i 's#root:/bin/false#root:/bin/ash#' /etc/passwd;uci set dropbear.lan.enable=1;uci set dropbear.lan.RootPasswordAuth=on;uci commit;echo -e "root\nroot"|passwd;/etc/init.d/dropbear restart
 
 import tkinter as tk
 import libautoflashgui, socket
@@ -59,55 +59,72 @@ class Application(tk.Frame):
         self.createWidgets()
 
     def createWidgets(self):
-        tk.Label(self, text='Target IP:').grid(row=0, column=1)
-        self.host = tk.Entry(self, width=64)
-        self.host.grid(row=0, column=2)
+        rowOffset = 0
+        spacing = 1 * 10 # Interval of 10
+        w = 64
 
-        tk.Label(self, text='Username:').grid(row=10, column=1)
-        self.username = tk.Entry(self, width=64)
-        self.username.grid(row=10, column=2)
+        tk.Label(self, text='Target IP:').grid(row=rowOffset, column=1)
+        self.host = tk.Entry(self, width=w)
+        self.host.grid(row=rowOffset, column=2)
+        rowOffset += spacing
 
-        tk.Label(self, text='Password:').grid(row=20, column=1)
-        self.password = tk.Entry(self, width=64)
-        self.password.grid(row=20, column=2)
+        tk.Label(self, text='Username:').grid(row=rowOffset, column=1)
+        self.username = tk.Entry(self, width=w)
+        self.username.grid(row=rowOffset, column=2)
+        rowOffset += spacing
 
-        tk.Label(self, text='Firmware File Name:').grid(row=30, column=1)
-        self.firmwarefile = tk.Entry(self, width=64)
-        self.firmwarefile.grid(row=30, column=2)
+        tk.Label(self, text='Password:').grid(row=rowOffset, column=1)
+        self.password = tk.Entry(self, width=w)
+        self.password.grid(row=rowOffset, column=2)
+        rowOffset += spacing
+
+        tk.Label(self, text='Firmware File Name:').grid(row=rowOffset, column=1)
+        self.firmwarefile = tk.Entry(self, width=w)
+        self.firmwarefile.grid(row=rowOffset, column=2)
+        rowOffset += spacing
 
         self.flashfirmware = tk.IntVar()
-        tk.Checkbutton(self, text="Flash firmware?", variable=self.flashfirmware, width=64).grid(row=40, column=2)
+        tk.Checkbutton(self, text="Flash firmware?", variable=self.flashfirmware, width=w).grid(row=rowOffset, column=2)
+        rowOffset += spacing
 
         self.expertmode = tk.IntVar()
-        tk.Checkbutton(self, text="I really truly know what I'm doing and I want to mess with the commands to tweak the firmware and I promise not to ask for help. :)  I understand that if the unsplit (if selected) or split command is too long (suspected limit of about 245 on TG799) or if I use special characters it may fail.  Avoid using & or ; (except splitting commands, unless escaped as a character code?).", variable=self.expertmode, command=self.expertmodeswitch, width=64, height=5, anchor=tk.W, justify=tk.LEFT, wraplength=400).grid(row=50, column=2)
+        tk.Checkbutton(self, text="I really truly know what I'm doing and I want to mess with the commands to tweak the firmware and I promise not to ask for help. :)  I understand that if the unsplit (if selected) or split command is too long (suspected limit of about 245 on TG799) or if I use special characters it may fail.  Avoid using & or ; (except splitting commands, unless escaped as a character code?).", variable=self.expertmode, command=self.expertmodeswitch, width=w, height=6, anchor=tk.W, justify=tk.LEFT, wraplength=400).grid(row=rowOffset, column=2)
+        rowOffset += spacing
+
         self.commandEval = tk.StringVar()
-        tk.Label(self, text='Command:').grid(row=60, column=1)
-        self.command = tk.Entry(self, width=64, textvariable=self.commandEval)
+        tk.Label(self, text='Command:').grid(row=rowOffset, column=1)
+        self.command = tk.Entry(self, width=w, textvariable=self.commandEval)
         self.command.bind('<Key>', (lambda _: self.commandChange()))
-        self.command.grid(row=60, column=2)
+        self.command.grid(row=rowOffset, column=2)
+        rowOffset += spacing
 
         self.lengthSummary = tk.Label(self, text='length goes here')
-        self.lengthSummary.grid(row=70, column=2)
+        self.lengthSummary.grid(row=rowOffset, column=2)
+        rowOffset += spacing
 
-        tk.Label(self, text='Ping, AdvancedDDNS, BasicDDNS:').grid(row=80, column=1)
+        tk.Label(self, text='Ping,\nAdvancedDDNS,\nBasicDDNS:').grid(row=rowOffset, column=1)
         self.methodAction = tk.Entry(self, width=16)
-        self.methodAction.grid(row=80, column=2)
+        self.methodAction.grid(row=rowOffset, column=2)
+        rowOffset += spacing
 
-        tk.Label(self, text='DDNS Service:').grid(row=90, column=1)
-        self.ddnsService = tk.Entry(self, width=64)
-        self.ddnsService.grid(row=90, column=2)
+        tk.Label(self, text='DDNS Service:').grid(row=rowOffset, column=1)
+        self.ddnsService = tk.Entry(self, width=w)
+        self.ddnsService.grid(row=rowOffset, column=2)
+        rowOffset += spacing
 
         self.splitActive = tk.IntVar()
         self.splitActive.set(1)
-        tk.Checkbutton(self, text="Split the given command on semicolons to try and use shorter commands with a 5 second delay between commands.  If an individual command fails it should not affect subsequent commands.", variable=self.splitActive, width=64, height=3, anchor=tk.W, justify=tk.LEFT, wraplength=400).grid(row=100, column=2)
+        tk.Checkbutton(self, text="Split the given command on semicolons to try and use shorter commands with a 5 second delay between commands.  If an individual command fails it should not affect subsequent commands.", variable=self.splitActive, width=w, height=4, anchor=tk.W, justify=tk.LEFT, wraplength=400).grid(row=rowOffset, column=2)
+        rowOffset += spacing
 
-        self.runButton = tk.Button(self, text='Run', command=self.run, width=64)
-        self.runButton.grid(row=110, column=2)
+        self.runButton = tk.Button(self, text='Run', command=self.run, width=w)
+        self.runButton.grid(row=rowOffset, column=2)
+        rowOffset += spacing
 
-        tk.Label(self, text='Status:').grid(row=120, column=1)
-        self.status = tk.Label(self, text='Check the console window for detailed status or major failures (exceptions - try re-running a few times)', width=64, height=4, anchor=tk.W, justify=tk.LEFT, wraplength=400)
-        self.status.grid(row=120, column=2)
-
+        tk.Label(self, text='Status:').grid(row=rowOffset, column=1)
+        self.status = tk.Label(self, text='Check the console window for detailed status or major failures (exceptions - try re-running a few times)', width=w, height=5, anchor=tk.W, justify=tk.LEFT, wraplength=400)
+        self.status.grid(row=rowOffset, column=2)
+        
         tk.Label(self, text='Select to change to correct defaults:').grid(row=0, column=3)
 
         self.method = tk.StringVar()
