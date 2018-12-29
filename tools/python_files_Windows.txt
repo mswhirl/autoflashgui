@@ -1,0 +1,3 @@
+..\autoflashgui.py
+..\libautoflashgui.py
+..\mysrp.py

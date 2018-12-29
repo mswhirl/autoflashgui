@@ -231,9 +231,9 @@ def calculate_H_AMK( hash_class, A, M, K ):
 class User (object):
     def __init__(self, username, password, hash_alg=SHA1, ng_type=NG_2048, n_hex=None, g_hex=None, bytes_a=None):
         if ng_type == NG_CUSTOM and (n_hex is None or g_hex is None):
-            raise ValueError("Both n_hex and g_hex are required when ng_type = NG_CUSTOM")
+            raise ValueError(_("Both n_hex and g_hex are required when ng_type = NG_CUSTOM"))
         if bytes_a and len(bytes_a) != 32:
-            raise ValueError("32 bytes required for bytes_a")
+            raise ValueError(_("32 bytes required for bytes_a"))
         N,g        = get_ng( ng_type, n_hex, g_hex )
         hash_class = _hash_map[ hash_alg ]
         #k          = H( hash_class, N, g )

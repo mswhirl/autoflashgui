@@ -1,0 +1,191 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-28 13:04+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ..\autoflashgui.py:81
+msgid "UI language = "
+msgstr ""
+
+#: ..\autoflashgui.py:115
+msgid "Target IP:"
+msgstr ""
+
+#: ..\autoflashgui.py:119
+msgid "Username:"
+msgstr ""
+
+#: ..\autoflashgui.py:123
+msgid "Password:"
+msgstr ""
+
+#: ..\autoflashgui.py:127
+msgid "Firmware File Name:"
+msgstr ""
+
+#: ..\autoflashgui.py:132
+msgid "Flash firmware?"
+msgstr ""
+
+#: ..\autoflashgui.py:135
+msgid ""
+"I really truly know what I'm doing and I want to mess with the commands to "
+"tweak the firmware and I promise not to ask for help. :)  I understand that "
+"if the unsplit (if selected) or split command is too long (suspected limit "
+"of about 245 on TG799) or if I use special characters it may fail.  Avoid "
+"using & or ; (except splitting commands, unless escaped as a character "
+"code?)."
+msgstr ""
+
+#: ..\autoflashgui.py:137
+msgid "Command:"
+msgstr ""
+
+#: ..\autoflashgui.py:145
+msgid "Ping, AdvancedDDNS, BasicDDNS:"
+msgstr ""
+
+#: ..\autoflashgui.py:149
+msgid "DDNS Service:"
+msgstr ""
+
+#: ..\autoflashgui.py:155
+msgid ""
+"Split the given command on semicolons to try and use shorter commands with a "
+"5 second delay between commands.  If an individual command fails it should "
+"not affect subsequent commands."
+msgstr ""
+
+#: ..\autoflashgui.py:157
+msgid "Run"
+msgstr ""
+
+#: ..\autoflashgui.py:160
+msgid "Status:"
+msgstr ""
+
+#: ..\autoflashgui.py:161
+msgid ""
+"Check the console window for detailed status or major failures (exceptions - "
+"try re-running a few times)"
+msgstr ""
+
+#: ..\autoflashgui.py:164
+msgid "Select to change to correct defaults:"
+msgstr ""
+
+#: ..\autoflashgui.py:243
+msgid "Check the console window for detailed status or major failures"
+msgstr ""
+
+#: ..\autoflashgui.py:253
+msgid "Technicolor modem flash and unlock utility (v. "
+msgstr ""
+
+#: ..\autoflashgui.py:253
+msgid ") - By Mark Smith - License: GPLv3"
+msgstr ""
+
+#: ..\libautoflashgui.py:22
+msgid "A value "
+msgstr ""
+
+#: ..\libautoflashgui.py:27
+msgid "Challenge received: "
+msgstr ""
+
+#: ..\libautoflashgui.py:30
+msgid "M value "
+msgstr ""
+
+#: ..\libautoflashgui.py:37
+msgid "Unable to authenticate (check password?), message:"
+msgstr ""
+
+#: ..\libautoflashgui.py:41
+msgid "Unable to authenticate"
+msgstr ""
+
+#: ..\libautoflashgui.py:46
+msgid "Authentication failed, debug values are: "
+msgstr ""
+
+#: ..\libautoflashgui.py:47
+msgid "Exception: "
+msgstr ""
+
+#: ..\libautoflashgui.py:75
+msgid "Unknown method "
+msgstr ""
+
+#: ..\libautoflashgui.py:88 ..\libautoflashgui.py:123
+msgid "Authenticating"
+msgstr ""
+
+#: ..\libautoflashgui.py:92
+msgid "Sending flash command to modem"
+msgstr ""
+
+#: ..\libautoflashgui.py:98
+msgid "Modem reports flashing commenced successfully"
+msgstr ""
+
+#: ..\libautoflashgui.py:100
+#, python-format
+msgid "Waiting for reboot... Sleeping for %s s"
+msgstr ""
+
+#: ..\libautoflashgui.py:110
+#, python-format
+msgid "Connect attempt %i"
+msgstr ""
+
+#: ..\libautoflashgui.py:117
+#, python-format
+msgid "Failed to connect, attempt %i.  Retrying"
+msgstr ""
+
+#: ..\libautoflashgui.py:121
+msgid "Modem up"
+msgstr ""
+
+#: ..\libautoflashgui.py:131
+msgid "Splitting command up using semicolons"
+msgstr ""
+
+#: ..\libautoflashgui.py:134
+msgid "Sleeping..."
+msgstr ""
+
+#: ..\libautoflashgui.py:137
+msgid "Please try a ssh connection now to "
+msgstr ""
+
+#: ..\libautoflashgui.py:137
+msgid ""
+" with username root and password root (change password immediately with "
+"passwd!)  Rebooting your modem now is recommended to stop any services that "
+"have been disabled."
+msgstr ""
+
+#: ..\mysrp.py:234
+msgid "Both n_hex and g_hex are required when ng_type = NG_CUSTOM"
+msgstr ""
+
+#: ..\mysrp.py:236
+msgid "32 bytes required for bytes_a"
+msgstr ""
