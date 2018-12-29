@@ -19,32 +19,32 @@ def srp6authenticate(br, host, username, password):
 
         usr = srp.User(username, password, hash_alg = srp.SHA256, ng_type = srp.NG_2048)
         uname, A = usr.start_authentication()
-        debugData.append("A value " + str(binascii.hexlify(A)))
+        debugData.append(_("A value ") + str(binascii.hexlify(A)))
 
         br.open('http://' + host + '/authenticate', method='post', data = urlencode({'CSRFtoken' : token, 'I' : uname, 'A' : binascii.hexlify(A)}))
         debugData.append("br.response " + str(br.response))
         j = json.decoder.JSONDecoder().decode(br.parsed.decode())
-        debugData.append("Challenge received: " + str(j))
+        debugData.append(_("Challenge received: ") + str(j))
 
         M = usr.process_challenge(binascii.unhexlify(j['s']), binascii.unhexlify(j['B']))
-        debugData.append("M value " + str(binascii.hexlify(M)))
+        debugData.append(_("M value ") + str(binascii.hexlify(M)))
         br.open('http://' + host + '/authenticate', method='post', data = urlencode({'CSRFtoken' : token, 'M' : binascii.hexlify(M)}))
         debugData.append("br.response " + str(br.response))
         j = json.decoder.JSONDecoder().decode(br.parsed.decode())
         debugData.append("Got response " + str(j))
 
         if 'error' in j:
-            raise Exception("Unable to authenticate (check password?), message:", j)
+            raise Exception(_("Unable to authenticate (check password?), message:"), j)
         
         usr.verify_session(binascii.unhexlify(j['M']))
         if not usr.authenticated():
-            raise Exception("Unable to authenticate")
+            raise Exception(_("Unable to authenticate"))
 
         return True
 
     except Exception:
-        print("Authentication failed, debug values are: " + str(debugData))
-        print("Exception: " + str(sys.exc_info()[0]))
+        print(_("Authentication failed, debug values are: ") + str(debugData))
+        print(_("Exception: ") + str(sys.exc_info()[0]))
         traceback.print_exc()
         raise
         
@@ -72,7 +72,7 @@ def runCommand(br, host, token, activeMethod, activeCommand, ddnsService):
         }
         urlpostfix = '/dyndns.lp'
     else:
-        raise Exception("Unknown method " + activeMethod + " please check input in GUI")
+        raise Exception(_("Unknown method ") + activeMethod + " please check input in GUI")
     
     r = br.session.post('http://' + host + urlpostfix, data=postdata)
     br._update_state(r)
@@ -85,19 +85,19 @@ def mainScript(host, username, password, flashFirmware, upgradeFilename, flashSl
 
     success = False
     if flashFirmware:
-        print("Authenticating")
+        print(_("Authenticating"))
         srp6authenticate(br, host, username, password)
         br.open('http://' + host)
         token = br.find(lambda tag: tag.has_attr('name') and tag['name'] == 'CSRFtoken')['content']
-        print("Sending flash command to modem")
+        print(_("Sending flash command to modem"))
         filedata = {'CSRFtoken': token, 'upgradefile': (upgradeFilename, open(upgradeFilename, 'rb'))}
         r = br.session.post('http://' + host + '/modals/gateway-modal.lp?action=upgradefw', files=filedata)
         br._update_state(r)
         print(r.text)
         if r.text == '{ "success":"true" }':
-            print("Modem reports flashing commenced successfully")
+            print(_("Modem reports flashing commenced successfully"))
             success = True
-            print("Waiting for reboot... Sleeping for %s s" % (flashSleepDelay))
+            print(_("Waiting for reboot... Sleeping for %s s") % (flashSleepDelay))
             time.sleep(int(flashSleepDelay))
     else:
         success = True
@@ -107,20 +107,20 @@ def mainScript(host, username, password, flashFirmware, upgradeFilename, flashSl
         attempt = 0
         while not backUp:
             attempt += 1
-            print("Connect attempt %i" % (attempt))
+            print(_("Connect attempt %i") % (attempt))
             try:
                 br.open('http://' + host)
                 print (br.response)
                 if br.response.ok:
                     backUp = True
             except Exception:
-                print('Failed to connect, attempt %i.  Retrying' % (attempt))
+                print(_('Failed to connect, attempt %i.  Retrying') % (attempt))
                 time.sleep(int(connectRetryDelay))
                 pass
 
-        print("Modem up")
+        print(_("Modem up"))
 
-    print("Authenticating")
+    print(_("Authenticating"))
     srp6authenticate(br, host, username, password)
     br.open('http://' + host)
     token = br.find(lambda tag: tag.has_attr('name') and tag['name'] == 'CSRFtoken')['content']
@@ -128,12 +128,12 @@ def mainScript(host, username, password, flashFirmware, upgradeFilename, flashSl
     if not splitCommand:
         runCommand(br, host, token, activeMethod, activeCommand, ddnsService)
     else:
-        print("Splitting command up using semicolons")
+        print(_("Splitting command up using semicolons"))
         for subCommand in [s for s in activeCommand.split(';') if len(s) > 0]:
             runCommand(br, host, token, activeMethod, subCommand, ddnsService)
-            print("Sleeping...")
+            print(_("Sleeping..."))
             time.sleep(int(interCommandDelay))
 
-    result = "Please try a ssh connection now to " + host + " with username root and password root (change password immediately with passwd!)  Rebooting your modem now is recommended to stop any services that have been disabled."
+    result = _("Please try a ssh connection now to ") + host + _(" with username root and password root (change password immediately with passwd!)  Rebooting your modem now is recommended to stop any services that have been disabled.")
     print(result)
     return result
