@@ -255,8 +255,10 @@ class Application(tk.Frame):
         except:
             maxLen = overallLen
         
-        self.lengthSummary.config(text='Overall %i, split maximum %i' % (overallLen, maxLen))
-
+        if lan=='it':
+           self.lengthSummary.config(text='Totale %i caratteri, divisione massima %i caratteri' % (overallLen, maxLen))
+        else:
+           self.lengthSummary.config(text='Overall %i, split maximum %i' % (overallLen, maxLen))
         return True
 
 
