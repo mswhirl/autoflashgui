@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-28 13:04+0100\n"
+"POT-Creation-Date: 2019-01-21 11:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,31 +17,35 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ..\autoflashgui.py:81
-msgid "UI language = "
+#: ..\autoflashgui.py:75
+msgid "Load Default:"
 msgstr ""
 
-#: ..\autoflashgui.py:115
+#: ..\autoflashgui.py:83
 msgid "Target IP:"
 msgstr ""
 
-#: ..\autoflashgui.py:119
+#: ..\autoflashgui.py:88
 msgid "Username:"
 msgstr ""
 
-#: ..\autoflashgui.py:123
+#: ..\autoflashgui.py:93
 msgid "Password:"
 msgstr ""
 
-#: ..\autoflashgui.py:127
+#: ..\autoflashgui.py:98
 msgid "Firmware File Name:"
 msgstr ""
 
-#: ..\autoflashgui.py:132
+#: ..\autoflashgui.py:103
+msgid "Pick Firmware"
+msgstr ""
+
+#: ..\autoflashgui.py:108
 msgid "Flash firmware?"
 msgstr ""
 
-#: ..\autoflashgui.py:135
+#: ..\autoflashgui.py:112
 msgid ""
 "I really truly know what I'm doing and I want to mess with the commands to "
 "tweak the firmware and I promise not to ask for help. :)  I understand that "
@@ -51,131 +55,142 @@ msgid ""
 "code?)."
 msgstr ""
 
-#: ..\autoflashgui.py:137
+#: ..\autoflashgui.py:116
 msgid "Command:"
 msgstr ""
 
-#: ..\autoflashgui.py:145
-msgid "Ping, AdvancedDDNS, BasicDDNS:"
+#: ..\autoflashgui.py:126
+msgid ""
+"Ping,\n"
+"AdvancedDDNS,\n"
+"BasicDDNS:"
 msgstr ""
 
-#: ..\autoflashgui.py:149
+#: ..\autoflashgui.py:131
 msgid "DDNS Service:"
 msgstr ""
 
-#: ..\autoflashgui.py:155
+#: ..\autoflashgui.py:138
 msgid ""
 "Split the given command on semicolons to try and use shorter commands with a "
 "5 second delay between commands.  If an individual command fails it should "
 "not affect subsequent commands."
 msgstr ""
 
-#: ..\autoflashgui.py:157
+#: ..\autoflashgui.py:141
 msgid "Run"
 msgstr ""
 
-#: ..\autoflashgui.py:160
+#: ..\autoflashgui.py:145
 msgid "Status:"
 msgstr ""
 
-#: ..\autoflashgui.py:161
+#: ..\autoflashgui.py:146
 msgid ""
 "Check the console window for detailed status or major failures (exceptions - "
 "try re-running a few times)"
 msgstr ""
 
 #: ..\autoflashgui.py:164
-msgid "Select to change to correct defaults:"
+msgid "Selected new variant "
 msgstr ""
 
-#: ..\autoflashgui.py:243
+#: ..\autoflashgui.py:183
+msgid "Please select firmware"
+msgstr ""
+
+#: ..\autoflashgui.py:225
 msgid "Check the console window for detailed status or major failures"
 msgstr ""
 
-#: ..\autoflashgui.py:253
+#: ..\autoflashgui.py:244
 msgid "Technicolor modem flash and unlock utility (v. "
 msgstr ""
 
-#: ..\autoflashgui.py:253
+#: ..\autoflashgui.py:244
 msgid ") - By Mark Smith - License: GPLv3"
 msgstr ""
 
-#: ..\libautoflashgui.py:22
+#: ..\libautoflashgui.py:25
 msgid "A value "
 msgstr ""
 
-#: ..\libautoflashgui.py:27
+#: ..\libautoflashgui.py:30
 msgid "Challenge received: "
 msgstr ""
 
-#: ..\libautoflashgui.py:30
+#: ..\libautoflashgui.py:33
 msgid "M value "
 msgstr ""
 
-#: ..\libautoflashgui.py:37
+#: ..\libautoflashgui.py:40
 msgid "Unable to authenticate (check password?), message:"
 msgstr ""
 
-#: ..\libautoflashgui.py:41
+#: ..\libautoflashgui.py:44
 msgid "Unable to authenticate"
 msgstr ""
 
-#: ..\libautoflashgui.py:46
+#: ..\libautoflashgui.py:49
 msgid "Authentication failed, debug values are: "
 msgstr ""
 
-#: ..\libautoflashgui.py:47
+#: ..\libautoflashgui.py:50
 msgid "Exception: "
 msgstr ""
 
-#: ..\libautoflashgui.py:75
+#: ..\libautoflashgui.py:78
 msgid "Unknown method "
 msgstr ""
 
-#: ..\libautoflashgui.py:88 ..\libautoflashgui.py:123
+#: ..\libautoflashgui.py:78
+msgid " please check input in GUI"
+msgstr ""
+
+#: ..\libautoflashgui.py:91 ..\libautoflashgui.py:126
 msgid "Authenticating"
 msgstr ""
 
-#: ..\libautoflashgui.py:92
+#: ..\libautoflashgui.py:95
 msgid "Sending flash command to modem"
 msgstr ""
 
-#: ..\libautoflashgui.py:98
+#: ..\libautoflashgui.py:101
 msgid "Modem reports flashing commenced successfully"
 msgstr ""
 
-#: ..\libautoflashgui.py:100
+#: ..\libautoflashgui.py:103
 #, python-format
 msgid "Waiting for reboot... Sleeping for %s s"
 msgstr ""
 
-#: ..\libautoflashgui.py:110
+#: ..\libautoflashgui.py:113
 #, python-format
 msgid "Connect attempt %i"
 msgstr ""
 
-#: ..\libautoflashgui.py:117
+#: ..\libautoflashgui.py:120
 #, python-format
 msgid "Failed to connect, attempt %i.  Retrying"
 msgstr ""
 
-#: ..\libautoflashgui.py:121
+#: ..\libautoflashgui.py:124
 msgid "Modem up"
 msgstr ""
 
-#: ..\libautoflashgui.py:131
+#: ..\libautoflashgui.py:134
 msgid "Splitting command up using semicolons"
 msgstr ""
 
-#: ..\libautoflashgui.py:134
+#: ..\libautoflashgui.py:137
 msgid "Sleeping..."
 msgstr ""
 
-#: ..\libautoflashgui.py:137
+#: ..\libautoflashgui.py:140
 msgid "Please try a ssh connection now to "
 msgstr ""
 
-#: ..\libautoflashgui.py:137
+#: ..\libautoflashgui.py:140
 msgid ""
 " with username root and password root (change password immediately with "
 "passwd!)  Rebooting your modem now is recommended to stop any services that "
