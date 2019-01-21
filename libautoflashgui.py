@@ -6,9 +6,12 @@
 
 import mysrp as srp
 from urllib.parse import urlencode
-
 import binascii, json, urllib, socket, time
 from robobrowser import RoboBrowser
+
+import liblang
+liblang.init_language()
+_ = liblang._
 
 def srp6authenticate(br, host, username, password):
     try:
@@ -72,7 +75,7 @@ def runCommand(br, host, token, activeMethod, activeCommand, ddnsService):
         }
         urlpostfix = '/dyndns.lp'
     else:
-        raise Exception(_("Unknown method ") + activeMethod + " please check input in GUI")
+        raise Exception(_("Unknown method ") + activeMethod + _(" please check input in GUI"))
     
     r = br.session.post('http://' + host + urlpostfix, data=postdata)
     br._update_state(r)

@@ -26,64 +26,16 @@
 ##variant=DGA4132 AGTHP 1.0.3,AdvancedDDNS,dyndns.it,sed -i 's#root:/bin/false#root:/bin/ash#' /etc/passwd;uci set dropbear.lan.enable=1;uci set dropbear.lan.RootPasswordAuth=on;uci commit;echo -e "root\nroot"|passwd;/etc/init.d/dropbear restart
 
 import tkinter as tk
+import tkinter.filedialog
 import libautoflashgui, socket
 
 # Multilanguage interface code based on adbtools2 program code
 # adbtools home page: https://github.com/digiampietro/adbtools2
-
-
-import os
-import sys
-import time
-import ctypes
-import os.path
-import locale
-import ctypes
-import uuid
-
+import os, sys, time
 from pathlib import Path
+import liblang
 
-import gettext
-
-os.system("cls") # clear screen
-
-# ********************************** Define startup folder
-
-mydir    = sys.path[0]              # not correct on exe file from pyinstaller
-mydir    = os.path.dirname(os.path.realpath(__file__))
-
-# ********************************** Define multi-langauge support
-
-def language_set(lan):
-    global _
-    if (os.path.isdir(mydir + '/locale/' + lan)):
-        slan = gettext.translation('autoflashgui', localedir='locale', languages=[lan])
-        slan.install()
-    else:
-        _ = lambda s: s
-
-def language_default():
-    lan = 'EN'
-    try:
-        if sys.argv[1] == '-l':
-            lan = sys.argv[2]
-            del sys.argv[1:3]
-    except:
-        (lancode, lanenc) = locale.getdefaultlocale()
-        lancode2=lancode[0:2]
-        if (os.path.isdir(mydir + '/locale/' + lancode)):
-            lan = lancode
-        if (os.path.isdir(mydir + '/locale/' + lancode2)):
-            lan = lancode2
-        else:
-            lan = 'en'
-    return lan
-
-lan = language_default()
-language_set(lan) 
-
-print (_('UI language = ') + lan)
-
+firmwarePath = 'firmware'
 
 def getDefaults():
     config = {}
@@ -120,6 +72,14 @@ class Application(tk.Frame):
         spacing = 1 * 10 # Interval of 10
         w = 64
 
+        tk.Label(self, text=_('Load Default:')).grid(row=rowOffset, column=1)
+        self.defaultListText = defaultMethods.keys()
+        self.defaultList = tk.StringVar()
+        self.defaultList.set(self.defaults['startupVariant'])
+        self.default = tk.OptionMenu(self, self.defaultList, *self.defaultListText, command=self.variantChange)
+        self.default.grid(row=rowOffset, column=2)
+        rowOffset += spacing
+
         tk.Label(self, text=_('Target IP:')).grid(row=rowOffset, column=1)
         self.host = tk.Entry(self, width=w)
         self.host.grid(row=rowOffset, column=2)
@@ -138,6 +98,10 @@ class Application(tk.Frame):
         tk.Label(self, text=_('Firmware File Name:')).grid(row=rowOffset, column=1)
         self.firmwarefile = tk.Entry(self, width=w)
         self.firmwarefile.grid(row=rowOffset, column=2)
+        rowOffset += spacing
+
+        self.pickFileButton = tk.Button(self, text=_('Pick Firmware'), command=self.pickFirmware, width=w)
+        self.pickFileButton.grid(row=rowOffset, column=2)
         rowOffset += spacing
 
         self.flashfirmware = tk.IntVar()
@@ -182,44 +146,58 @@ class Application(tk.Frame):
         self.status = tk.Label(self, text=_('Check the console window for detailed status or major failures (exceptions - try re-running a few times)'), width=w, height=5, anchor=tk.W, justify=tk.LEFT, wraplength=400)
         self.status.grid(row=rowOffset, column=2)
         
-        tk.Label(self, text=_('Select to change to correct defaults:')).grid(row=0, column=3)
-
-        self.method = tk.StringVar()
-        self.method.set(self.defaults['startupVariant'])
-
-        rowOffset = 10
-        for method in defaultMethods.keys():
-            tk.Radiobutton(self, text=method, variable=self.method, value=method, command=self.methodchange).grid(row=rowOffset,column=3)
-            rowOffset += 10
-
         self.host.insert(0, self.defaults['host'])
         self.username.insert(0, self.defaults['username'])
         self.password.insert(0, self.defaults['password'])
         self.firmwarefile.insert(0, self.defaults['upgradeFilename'])
         self.flashfirmware.set(self.defaults['flashFirmware'])
-        self.command.insert(0, defaultMethods[self.defaults['startupVariant']][2])
+        self.command.insert(0, defaultMethods[self.defaultList.get()][2])
         self.command.config(state='readonly')
-        self.methodAction.insert(0, defaultMethods[self.defaults['startupVariant']][0])
+        self.methodAction.insert(0, defaultMethods[self.defaultList.get()][0])
         self.methodAction.config(state='readonly')
-        self.ddnsService.insert(0, defaultMethods[self.defaults['startupVariant']][1])
+        self.ddnsService.insert(0, defaultMethods[self.defaultList.get()][1])
         self.ddnsService.config(state='readonly')
         self.commandChange()
         return
+
+    def variantChange(self, value):
+        print(_("Selected new variant "), value)
+        self.command.config(state='normal')
+        self.command.delete(0, tk.END)
+        self.command.insert(0, defaultMethods[value][2])
+        self.methodAction.config(state='normal')
+        self.methodAction.delete(0, tk.END)
+        self.methodAction.insert(0, defaultMethods[value][0])
+        self.ddnsService.config(state='normal')
+        self.ddnsService.delete(0, tk.END)
+        self.ddnsService.insert(0, defaultMethods[value][1])
+
+        if not self.expertmode.get():
+            self.command.config(state='readonly')
+            self.methodAction.config(state='readonly')
+            self.ddnsService.config(state='readonly')
+
+        self.commandChange()
+
+    def pickFirmware(self):
+        fileName = tk.filedialog.askopenfilename(initialdir=firmwarePath, title=_("Please select firmware"), filetypes = [('RBI files', '*.rbi')])
+        self.firmwarefile.delete(0, tk.END)
+        self.firmwarefile.insert(0, fileName)
 
     def expertmodeswitch(self):
         newSetting = self.expertmode.get()
         if newSetting == False:
             self.command.config(state='normal')
             self.command.delete(0, tk.END)
-            self.command.insert(0, defaultMethods[self.method.get()][2])
+            self.command.insert(0, defaultMethods[self.defaultList.get()][2])
             self.command.config(state='readonly')
             self.methodAction.config(state='normal')
             self.methodAction.delete(0, tk.END)
-            self.methodAction.insert(0, defaultMethods[self.method.get()][0])
+            self.methodAction.insert(0, defaultMethods[self.defaultList.get()][0])
             self.methodAction.config(state='readonly')
             self.ddnsService.config(state='normal')
             self.ddnsService.delete(0, tk.END)
-            self.ddnsService.insert(0, defaultMethods[self.method.get()][1])
+            self.ddnsService.insert(0, defaultMethods[self.defaultList.get()][1])
             self.ddnsService.config(state='readonly')
         else:
             self.command.config(state='normal')
@@ -228,25 +206,6 @@ class Application(tk.Frame):
         self.commandChange()
         return
 
-    def methodchange(self):
-        self.command.config(state='normal')
-        self.command.delete(0, tk.END)
-        self.command.insert(0, defaultMethods[self.method.get()][2])
-        self.methodAction.config(state='normal')
-        self.methodAction.delete(0, tk.END)
-        self.methodAction.insert(0, defaultMethods[self.method.get()][0])
-        self.ddnsService.config(state='normal')
-        self.ddnsService.delete(0, tk.END)
-        self.ddnsService.insert(0, defaultMethods[self.method.get()][1])
-
-        if not self.expertmode.get():
-            self.command.config(state='readonly')
-            self.methodAction.config(state='readonly')
-            self.ddnsService.config(state='readonly')
-
-        self.commandChange()
-        return
- 
     def commandChange(self):
         overallLen = len(self.command.get())
         maxLen = 0
@@ -268,10 +227,19 @@ class Application(tk.Frame):
         self.status.config(text=res)
         return
 
-
 if __name__=='__main__':
     socket.setdefaulttimeout(5)
+    # clear screen
+    if sys.platform.startswith('win'):
+        os.system("cls")
+    else:
+        os.system("clear")
+
+    liblang.init_language()
+    _ = liblang._
+    lan = liblang.lan
+
     app = Application()
-    appversion="23.12.2018"
+    appversion="21.01.2018"
     app.master.title(_("Technicolor modem flash and unlock utility (v. ") + appversion + _(") - By Mark Smith - License: GPLv3"))
     app.mainloop()
