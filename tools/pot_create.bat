@@ -2,7 +2,8 @@
 
 SET PROGRAM-NAME=autoflashgui
 SET FILE-NAME=autoflashgui
-SET XGETTEXT-OPTIONS=--from-code=UTF-8 --no-location --width=600 --no-wrap
+SET CHARACTERS=400
+SET XGETTEXT-OPTIONS=--from-code=UTF-8 --no-location --width=%CHARACTERS% --no-wrap
 CLS
 ECHO *********************************************
 ECHO * %PROGRAM-NAME%
@@ -32,4 +33,5 @@ PAUSE > NUL
 SET PROGRAM-NAME=
 SET FILE-NAME=
 SET XGETTEXT-OPTIONS=
+SET CHARACTERS=
 

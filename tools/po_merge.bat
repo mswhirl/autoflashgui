@@ -2,8 +2,9 @@
 SETLOCAL EnableExtensions 
 SET PROGRAM-NAME=autoflashgui
 SET FILE-NAME=autoflashgui
-SET MSGMERGE-OPTIONS=-U -q -N --backup=none --width=600 --no-wrap --no-location
-SET MSGATTRIB-OPTIONS=--no-obsolete --no-fuzzy --width=600 --no-wrap --no-location
+SET CHARACTERS=400
+SET MSGMERGE-OPTIONS=-q -U -N --backup=none --width=%CHARACTERS% --no-wrap --no-location
+SET MSGATTRIB-OPTIONS=--no-obsolete --no-fuzzy --width=%CHARACTERS% --no-wrap --no-location
 SET MSGFMT-OPTIONS=--statistics
 
 CLS
@@ -49,4 +50,5 @@ SET FILE-NAME=
 SET MSGMERGE-OPTIONS=
 SET MSGATTRIB-OPTIONS=
 SET MSGFMT-OPTIONS=
+SET CHARACTERS=
 
