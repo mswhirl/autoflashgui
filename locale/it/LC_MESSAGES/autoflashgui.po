@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: autoflashgui\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-28 13:02+0100\n"
+"POT-Creation-Date: 2019-01-21 11:02+0100\n"
 "PO-Revision-Date: 2018-12-28 13:06+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus@gmail.com\n"
@@ -19,31 +19,35 @@ msgstr ""
 "X-Generator: Poedit 2.2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: ..\autoflashgui.py:81
-msgid "UI language = "
-msgstr "Lingua UI= "
+#: ..\autoflashgui.py:75
+msgid "Load Default:"
+msgstr "Profilo modem"
 
-#: ..\autoflashgui.py:115
+#: ..\autoflashgui.py:83
 msgid "Target IP:"
 msgstr "IP dispositivo:"
 
-#: ..\autoflashgui.py:119
+#: ..\autoflashgui.py:88
 msgid "Username:"
 msgstr "Nome utente:"
 
-#: ..\autoflashgui.py:123
+#: ..\autoflashgui.py:93
 msgid "Password:"
 msgstr "Password:"
 
-#: ..\autoflashgui.py:127
+#: ..\autoflashgui.py:98
 msgid "Firmware File Name:"
 msgstr "Nome file firmware:"
 
-#: ..\autoflashgui.py:132
+#: ..\autoflashgui.py:103
+msgid "Pick Firmware"
+msgstr "Seleziona firmware"
+
+#: ..\autoflashgui.py:108
 msgid "Flash firmware?"
 msgstr "Flash del firmware?"
 
-#: ..\autoflashgui.py:135
+#: ..\autoflashgui.py:112
 msgid ""
 "I really truly know what I'm doing and I want to mess with the commands to "
 "tweak the firmware and I promise not to ask for help. :)  I understand that "
@@ -58,19 +62,25 @@ msgstr ""
 "si usano caratteri speciali potrebbe fallire. Evita l'uso di & o; eccetto la "
 "divisione dei comandi (a meno che non sia sfuggito come carattere?)."
 
-#: ..\autoflashgui.py:137
+#: ..\autoflashgui.py:116
 msgid "Command:"
 msgstr "Comando:"
 
-#: ..\autoflashgui.py:145
-msgid "Ping, AdvancedDDNS, BasicDDNS:"
-msgstr "Ping, DDNS avanzato, DDNS base:"
+#: ..\autoflashgui.py:126
+msgid ""
+"Ping,\n"
+"AdvancedDDNS,\n"
+"BasicDDNS:"
+msgstr ""
+"Ping,\n"
+"AdvancedDDNS,\n"
+"BasicDDNS:"
 
-#: ..\autoflashgui.py:149
+#: ..\autoflashgui.py:131
 msgid "DDNS Service:"
 msgstr "Servizio DDNS:"
 
-#: ..\autoflashgui.py:155
+#: ..\autoflashgui.py:138
 msgid ""
 "Split the given command on semicolons to try and use shorter commands with a "
 "5 second delay between commands.  If an individual command fails it should "
@@ -80,15 +90,15 @@ msgstr ""
 "brevi con un ritardo di 5 secondi tra i comandi. Se un singolo comando "
 "fallisce, non dovrebbe influenzare i comandi successivi."
 
-#: ..\autoflashgui.py:157
+#: ..\autoflashgui.py:141
 msgid "Run"
 msgstr "Esegui"
 
-#: ..\autoflashgui.py:160
+#: ..\autoflashgui.py:145
 msgid "Status:"
 msgstr "Stato:"
 
-#: ..\autoflashgui.py:161
+#: ..\autoflashgui.py:146
 msgid ""
 "Check the console window for detailed status or major failures (exceptions - "
 "try re-running a few times)"
@@ -97,97 +107,105 @@ msgstr ""
 "(eccezioni - prova a ri-lanciare varie volte)"
 
 #: ..\autoflashgui.py:164
-msgid "Select to change to correct defaults:"
-msgstr "Profilo valori predefiniti:"
+msgid "Selected new variant "
+msgstr "Seleziona nuovo profilo "
 
-#: ..\autoflashgui.py:243
+#: ..\autoflashgui.py:183
+msgid "Please select firmware"
+msgstr "Seleziona il firmware"
+
+#: ..\autoflashgui.py:225
 msgid "Check the console window for detailed status or major failures"
 msgstr "Controlla finestra della console per i dettagli e gli errori"
 
-#: ..\autoflashgui.py:253
+#: ..\autoflashgui.py:244
 msgid "Technicolor modem flash and unlock utility (v. "
 msgstr "Modem technicolor - Utility flash e sblocco modem (v. "
 
-#: ..\autoflashgui.py:253
+#: ..\autoflashgui.py:244
 msgid ") - By Mark Smith - License: GPLv3"
 msgstr ") - Autore: Mark Smith - Licenza: GPLv3"
 
-#: ..\libautoflashgui.py:22
+#: ..\libautoflashgui.py:25
 msgid "A value "
 msgstr "UIn valore "
 
-#: ..\libautoflashgui.py:27
+#: ..\libautoflashgui.py:30
 msgid "Challenge received: "
 msgstr "Challenge ricevuta: "
 
-#: ..\libautoflashgui.py:30
+#: ..\libautoflashgui.py:33
 msgid "M value "
 msgstr "Valore M "
 
-#: ..\libautoflashgui.py:37
+#: ..\libautoflashgui.py:40
 msgid "Unable to authenticate (check password?), message:"
 msgstr "Autebticazione fallita (verifica la password). Messaggio:"
 
-#: ..\libautoflashgui.py:41
+#: ..\libautoflashgui.py:44
 msgid "Unable to authenticate"
 msgstr "Autebticazione fallita"
 
-#: ..\libautoflashgui.py:46
+#: ..\libautoflashgui.py:49
 msgid "Authentication failed, debug values are: "
 msgstr "Autentificazioen fallita. I valori debug sono: "
 
-#: ..\libautoflashgui.py:47
+#: ..\libautoflashgui.py:50
 msgid "Exception: "
 msgstr "Eccezione: "
 
-#: ..\libautoflashgui.py:75
+#: ..\libautoflashgui.py:78
 msgid "Unknown method "
 msgstr "Metodo sconosciuto "
 
-#: ..\libautoflashgui.py:88 ..\libautoflashgui.py:123
+#: ..\libautoflashgui.py:78
+msgid " please check input in GUI"
+msgstr " controlla i valori inseriti nella GUI"
+
+#: ..\libautoflashgui.py:91 ..\libautoflashgui.py:126
 msgid "Authenticating"
 msgstr "Autentificazione"
 
-#: ..\libautoflashgui.py:92
+#: ..\libautoflashgui.py:95
 msgid "Sending flash command to modem"
 msgstr "Invio comando flash al modem"
 
-#: ..\libautoflashgui.py:98
+#: ..\libautoflashgui.py:101
 msgid "Modem reports flashing commenced successfully"
 msgstr "Il modem ha riportato il completamento dell'operazione di flash"
 
-#: ..\libautoflashgui.py:100
+#: ..\libautoflashgui.py:103
 #, python-format
 msgid "Waiting for reboot... Sleeping for %s s"
 msgstr "Attesa riavvio modem... Sleep per %s s"
 
-#: ..\libautoflashgui.py:110
+#: ..\libautoflashgui.py:113
 #, python-format
 msgid "Connect attempt %i"
 msgstr "Tentativo connessione %i"
 
-#: ..\libautoflashgui.py:117
+#: ..\libautoflashgui.py:120
 #, python-format
 msgid "Failed to connect, attempt %i.  Retrying"
 msgstr "Conenssione fallita, tentativo %i.  Riprovo"
 
-#: ..\libautoflashgui.py:121
+#: ..\libautoflashgui.py:124
 msgid "Modem up"
 msgstr "Modem attivo"
 
-#: ..\libautoflashgui.py:131
+#: ..\libautoflashgui.py:134
 msgid "Splitting command up using semicolons"
 msgstr "Dividi comandi con punto e virgola"
 
-#: ..\libautoflashgui.py:134
+#: ..\libautoflashgui.py:137
 msgid "Sleeping..."
 msgstr "Sleep..."
 
-#: ..\libautoflashgui.py:137
+#: ..\libautoflashgui.py:140
 msgid "Please try a ssh connection now to "
 msgstr "Prova ora una connessione SSH verso "
 
-#: ..\libautoflashgui.py:137
+#: ..\libautoflashgui.py:140
 msgid ""
 " with username root and password root (change password immediately with "
 "passwd!)  Rebooting your modem now is recommended to stop any services that "
