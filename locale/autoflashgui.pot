@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-21 15:07+0100\n"
+"POT-Creation-Date: 2019-01-24 16:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,10 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "Load Default:"
+msgid "Reading config..."
+msgstr ""
+
+msgid "Modem profile:"
 msgstr ""
 
 msgid "Target IP:"
@@ -32,7 +35,7 @@ msgstr ""
 msgid "Firmware File Name:"
 msgstr ""
 
-msgid "Pick Firmware"
+msgid "Select firmware file"
 msgstr ""
 
 msgid "Flash firmware?"
@@ -65,19 +68,28 @@ msgstr ""
 msgid "Check the console window for detailed status or major failures (exceptions - try re-running a few times)"
 msgstr ""
 
-msgid "Selected new variant "
+msgid "Selected new profile "
 msgstr ""
 
 msgid "Please select firmware"
 msgstr ""
 
+msgid "RBI files"
+msgstr ""
+
+msgid "Overall characters: "
+msgstr ""
+
+msgid " - max characters for line: "
+msgstr ""
+
 msgid "Check the console window for detailed status or major failures"
 msgstr ""
 
-msgid "Technicolor modem flash and unlock utility (v. "
+msgid "Technicolor modem flash/unlock utility (v. "
 msgstr ""
 
-msgid ") - By Mark Smith - License: GPLv3"
+msgid ") - By Mark Smith"
 msgstr ""
 
 msgid "A value "
@@ -99,6 +111,9 @@ msgid "Authentication failed, debug values are: "
 msgstr ""
 
 msgid "Exception: "
+msgstr ""
+
+msgid "Sending command: "
 msgstr ""
 
 msgid "Unknown method "

@@ -41,7 +41,7 @@ def getDefaults():
     config = {}
     global defaultMethods
     defaultMethods = {}
-    print("Reading config...")
+    print(_("Reading config..."))
     with open('defaults.ini', "r", 1048576, encoding='utf8') as f:
         for line in f:
             print("Line:" + line.strip())
@@ -64,15 +64,15 @@ class Application(tk.Frame):
         self.flashSleepDelay = self.defaults['flashSleepDelay']
         self.interCommandDelay = self.defaults['interCommandDelay']
         self.connectRetryDelay = self.defaults['connectRetryDelay']
-        self.expertMode = False
         self.createWidgets()
 
     def createWidgets(self):
         rowOffset = 0
         spacing = 1 * 10 # Interval of 10
         w = 64
+		
 
-        tk.Label(self, text=_('Load Default:')).grid(row=rowOffset, column=1)
+        tk.Label(self, text=_('Modem profile:')).grid(row=rowOffset, column=1)
         self.defaultListText = defaultMethods.keys()
         self.defaultList = tk.StringVar()
         self.defaultList.set(self.defaults['startupVariant'])
@@ -100,7 +100,7 @@ class Application(tk.Frame):
         self.firmwarefile.grid(row=rowOffset, column=2)
         rowOffset += spacing
 
-        self.pickFileButton = tk.Button(self, text=_('Pick Firmware'), command=self.pickFirmware, width=w)
+        self.pickFileButton = tk.Button(self, text=_('Select firmware file'), command=self.pickFirmware, width=54)
         self.pickFileButton.grid(row=rowOffset, column=2)
         rowOffset += spacing
 
@@ -109,6 +109,7 @@ class Application(tk.Frame):
         rowOffset += spacing
 
         self.expertmode = tk.IntVar()
+        self.expertmode.set(1)
         tk.Checkbutton(self, text=_("I really truly know what I'm doing and I want to mess with the commands to tweak the firmware and I promise not to ask for help. :)  I understand that if the unsplit (if selected) or split command is too long (suspected limit of about 245 on TG799) or if I use special characters it may fail.  Avoid using & or ; (except splitting commands, unless escaped as a character code?)."), variable=self.expertmode, command=self.expertmodeswitch, width=w, height=6, anchor=tk.W, justify=tk.LEFT, wraplength=400).grid(row=rowOffset, column=2)
         rowOffset += spacing
 
@@ -138,7 +139,7 @@ class Application(tk.Frame):
         tk.Checkbutton(self, text=_("Split the given command on semicolons to try and use shorter commands with a 5 second delay between commands.  If an individual command fails it should not affect subsequent commands."), variable=self.splitActive, width=w, height=4, anchor=tk.W, justify=tk.LEFT, wraplength=400).grid(row=rowOffset, column=2)
         rowOffset += spacing
 
-        self.runButton = tk.Button(self, text=_('Run'), command=self.run, width=w)
+        self.runButton = tk.Button(self, text=_('Run'), command=self.run, width=54)
         self.runButton.grid(row=rowOffset, column=2)
         rowOffset += spacing
 
@@ -161,7 +162,7 @@ class Application(tk.Frame):
         return
 
     def variantChange(self, value):
-        print(_("Selected new variant "), value)
+        print(_("Selected new profile "), value)
         self.command.config(state='normal')
         self.command.delete(0, tk.END)
         self.command.insert(0, defaultMethods[value][2])
@@ -214,10 +215,7 @@ class Application(tk.Frame):
         except:
             maxLen = overallLen
         
-        if lan=='it':
-           self.lengthSummary.config(text='Totale %i caratteri, divisione massima %i caratteri' % (overallLen, maxLen))
-        else:
-           self.lengthSummary.config(text='Overall %i, split maximum %i' % (overallLen, maxLen))
+        self.lengthSummary.config(text=_('Overall characters: ') + str (overallLen) + _(' - max characters for line: ') + str (maxLen))
         return True
 
 
@@ -236,10 +234,10 @@ if __name__=='__main__':
         os.system("clear")
 
     liblang.init_language()
-    _ = liblang._
+#    _ = liblang._
     lan = liblang.lan
 
     app = Application()
     appversion="21.01.2018"
-    app.master.title(_("Technicolor modem flash and unlock utility (v. ") + appversion + _(") - By Mark Smith - License: GPLv3"))
+    app.master.title(_("Technicolor modem flash/unlock utility (v. ") + appversion + _(") - By Mark Smith"))
     app.mainloop()

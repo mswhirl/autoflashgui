@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: autoflashgui\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-21 14:18+0100\n"
+"POT-Creation-Date: 2019-01-24 16:53+0100\n"
 "PO-Revision-Date: 2018-12-28 13:06+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus@gmail.com\n"
@@ -19,8 +19,11 @@ msgstr ""
 "X-Generator: Poedit 2.2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-msgid "Load Default:"
-msgstr "Profilo modem"
+msgid "Reading config..."
+msgstr "Lettura file configurazione..."
+
+msgid "Modem profile:"
+msgstr "Profilo modem:"
 
 msgid "Target IP:"
 msgstr "IP dispositivo:"
@@ -34,8 +37,8 @@ msgstr "Password:"
 msgid "Firmware File Name:"
 msgstr "Nome file firmware:"
 
-msgid "Pick Firmware"
-msgstr "Seleziona firmware"
+msgid "Select firmware file"
+msgstr "Seleziona file firmware"
 
 msgid "Flash firmware?"
 msgstr "Flash del firmware?"
@@ -70,23 +73,32 @@ msgstr "Stato:"
 msgid "Check the console window for detailed status or major failures (exceptions - try re-running a few times)"
 msgstr "Controlla la finestra della console per i dettagli dello stato o gli errori (eccezioni - prova a ri-lanciare varie volte)"
 
-msgid "Selected new variant "
-msgstr "Seleziona nuovo profilo "
+msgid "Selected new profile "
+msgstr "Nuovo profilo selezionato "
 
 msgid "Please select firmware"
 msgstr "Seleziona il firmware"
 
+msgid "RBI files"
+msgstr "File RBI"
+
+msgid "Overall characters: "
+msgstr "Totale caratteri: "
+
+msgid " - max characters for line: "
+msgstr " - caratteri max per riga: "
+
 msgid "Check the console window for detailed status or major failures"
 msgstr "Controlla finestra della console per i dettagli e gli errori"
 
-msgid "Technicolor modem flash and unlock utility (v. "
-msgstr "Modem technicolor - Utility flash e sblocco modem (v. "
+msgid "Technicolor modem flash/unlock utility (v. "
+msgstr "Utility flash/root modem Technicolor (v. "
 
-msgid ") - By Mark Smith - License: GPLv3"
-msgstr ") - Autore: Mark Smith - Licenza: GPLv3"
+msgid ") - By Mark Smith"
+msgstr ") - Autore: Mark Smith"
 
 msgid "A value "
-msgstr "UIn valore "
+msgstr "Un valore "
 
 msgid "Challenge received: "
 msgstr "Challenge ricevuta: "
@@ -105,6 +117,9 @@ msgstr "Autentificazioen fallita. I valori debug sono: "
 
 msgid "Exception: "
 msgstr "Eccezione: "
+
+msgid "Sending command: "
+msgstr "Invio comando: "
 
 msgid "Unknown method "
 msgstr "Metodo sconosciuto "
@@ -131,7 +146,7 @@ msgstr "Tentativo connessione %i"
 
 #, python-format
 msgid "Failed to connect, attempt %i.  Retrying"
-msgstr "Conenssione fallita, tentativo %i.  Riprovo"
+msgstr "Connessione fallita, tentativo %i.  Riprovo"
 
 msgid "Modem up"
 msgstr "Modem attivo"
