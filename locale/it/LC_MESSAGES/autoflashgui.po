@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: autoflashgui\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-21 11:02+0100\n"
+"POT-Creation-Date: 2019-01-21 14:18+0100\n"
 "PO-Revision-Date: 2018-12-28 13:06+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus@gmail.com\n"
@@ -19,54 +19,33 @@ msgstr ""
 "X-Generator: Poedit 2.2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: ..\autoflashgui.py:75
 msgid "Load Default:"
 msgstr "Profilo modem"
 
-#: ..\autoflashgui.py:83
 msgid "Target IP:"
 msgstr "IP dispositivo:"
 
-#: ..\autoflashgui.py:88
 msgid "Username:"
 msgstr "Nome utente:"
 
-#: ..\autoflashgui.py:93
 msgid "Password:"
 msgstr "Password:"
 
-#: ..\autoflashgui.py:98
 msgid "Firmware File Name:"
 msgstr "Nome file firmware:"
 
-#: ..\autoflashgui.py:103
 msgid "Pick Firmware"
 msgstr "Seleziona firmware"
 
-#: ..\autoflashgui.py:108
 msgid "Flash firmware?"
 msgstr "Flash del firmware?"
 
-#: ..\autoflashgui.py:112
-msgid ""
-"I really truly know what I'm doing and I want to mess with the commands to "
-"tweak the firmware and I promise not to ask for help. :)  I understand that "
-"if the unsplit (if selected) or split command is too long (suspected limit "
-"of about 245 on TG799) or if I use special characters it may fail.  Avoid "
-"using & or ; (except splitting commands, unless escaped as a character "
-"code?)."
-msgstr ""
-"So cosa sto facendo e voglio inviare i comandi per modificare il firmware e "
-"prometto di non chiedere aiuto. :) Capisco che il comando unsplit (se "
-"selezionato) o split è troppo lungo (il limite è di circa 245 nel TG799) o "
-"si usano caratteri speciali potrebbe fallire. Evita l'uso di & o; eccetto la "
-"divisione dei comandi (a meno che non sia sfuggito come carattere?)."
+msgid "I really truly know what I'm doing and I want to mess with the commands to tweak the firmware and I promise not to ask for help. :)  I understand that if the unsplit (if selected) or split command is too long (suspected limit of about 245 on TG799) or if I use special characters it may fail.  Avoid using & or ; (except splitting commands, unless escaped as a character code?)."
+msgstr "So cosa sto facendo e voglio inviare i comandi per modificare il firmware e prometto di non chiedere aiuto. :) Capisco che il comando unsplit (se selezionato) o split è troppo lungo (il limite è di circa 245 nel TG799) o si usano caratteri speciali potrebbe fallire. Evita l'uso di & o; eccetto la divisione dei comandi (a meno che non sia sfuggito come carattere?)."
 
-#: ..\autoflashgui.py:116
 msgid "Command:"
 msgstr "Comando:"
 
-#: ..\autoflashgui.py:126
 msgid ""
 "Ping,\n"
 "AdvancedDDNS,\n"
@@ -76,149 +55,101 @@ msgstr ""
 "AdvancedDDNS,\n"
 "BasicDDNS:"
 
-#: ..\autoflashgui.py:131
 msgid "DDNS Service:"
 msgstr "Servizio DDNS:"
 
-#: ..\autoflashgui.py:138
-msgid ""
-"Split the given command on semicolons to try and use shorter commands with a "
-"5 second delay between commands.  If an individual command fails it should "
-"not affect subsequent commands."
-msgstr ""
-"Dividi il comando con punto e virgola per provare a usare i comandi più "
-"brevi con un ritardo di 5 secondi tra i comandi. Se un singolo comando "
-"fallisce, non dovrebbe influenzare i comandi successivi."
+msgid "Split the given command on semicolons to try and use shorter commands with a 5 second delay between commands.  If an individual command fails it should not affect subsequent commands."
+msgstr "Dividi il comando con punto e virgola per provare a usare i comandi più brevi con un ritardo di 5 secondi tra i comandi. Se un singolo comando fallisce, non dovrebbe influenzare i comandi successivi."
 
-#: ..\autoflashgui.py:141
 msgid "Run"
 msgstr "Esegui"
 
-#: ..\autoflashgui.py:145
 msgid "Status:"
 msgstr "Stato:"
 
-#: ..\autoflashgui.py:146
-msgid ""
-"Check the console window for detailed status or major failures (exceptions - "
-"try re-running a few times)"
-msgstr ""
-"Controlla la finestra della console per i dettagli dello stato o gli errori "
-"(eccezioni - prova a ri-lanciare varie volte)"
+msgid "Check the console window for detailed status or major failures (exceptions - try re-running a few times)"
+msgstr "Controlla la finestra della console per i dettagli dello stato o gli errori (eccezioni - prova a ri-lanciare varie volte)"
 
-#: ..\autoflashgui.py:164
 msgid "Selected new variant "
 msgstr "Seleziona nuovo profilo "
 
-#: ..\autoflashgui.py:183
 msgid "Please select firmware"
 msgstr "Seleziona il firmware"
 
-#: ..\autoflashgui.py:225
 msgid "Check the console window for detailed status or major failures"
 msgstr "Controlla finestra della console per i dettagli e gli errori"
 
-#: ..\autoflashgui.py:244
 msgid "Technicolor modem flash and unlock utility (v. "
 msgstr "Modem technicolor - Utility flash e sblocco modem (v. "
 
-#: ..\autoflashgui.py:244
 msgid ") - By Mark Smith - License: GPLv3"
 msgstr ") - Autore: Mark Smith - Licenza: GPLv3"
 
-#: ..\libautoflashgui.py:25
 msgid "A value "
 msgstr "UIn valore "
 
-#: ..\libautoflashgui.py:30
 msgid "Challenge received: "
 msgstr "Challenge ricevuta: "
 
-#: ..\libautoflashgui.py:33
 msgid "M value "
 msgstr "Valore M "
 
-#: ..\libautoflashgui.py:40
 msgid "Unable to authenticate (check password?), message:"
 msgstr "Autebticazione fallita (verifica la password). Messaggio:"
 
-#: ..\libautoflashgui.py:44
 msgid "Unable to authenticate"
 msgstr "Autebticazione fallita"
 
-#: ..\libautoflashgui.py:49
 msgid "Authentication failed, debug values are: "
 msgstr "Autentificazioen fallita. I valori debug sono: "
 
-#: ..\libautoflashgui.py:50
 msgid "Exception: "
 msgstr "Eccezione: "
 
-#: ..\libautoflashgui.py:78
 msgid "Unknown method "
 msgstr "Metodo sconosciuto "
 
-#: ..\libautoflashgui.py:78
 msgid " please check input in GUI"
 msgstr " controlla i valori inseriti nella GUI"
 
-#: ..\libautoflashgui.py:91 ..\libautoflashgui.py:126
 msgid "Authenticating"
 msgstr "Autentificazione"
 
-#: ..\libautoflashgui.py:95
 msgid "Sending flash command to modem"
 msgstr "Invio comando flash al modem"
 
-#: ..\libautoflashgui.py:101
 msgid "Modem reports flashing commenced successfully"
 msgstr "Il modem ha riportato il completamento dell'operazione di flash"
 
-#: ..\libautoflashgui.py:103
 #, python-format
 msgid "Waiting for reboot... Sleeping for %s s"
 msgstr "Attesa riavvio modem... Sleep per %s s"
 
-#: ..\libautoflashgui.py:113
 #, python-format
 msgid "Connect attempt %i"
 msgstr "Tentativo connessione %i"
 
-#: ..\libautoflashgui.py:120
 #, python-format
 msgid "Failed to connect, attempt %i.  Retrying"
 msgstr "Conenssione fallita, tentativo %i.  Riprovo"
 
-#: ..\libautoflashgui.py:124
 msgid "Modem up"
 msgstr "Modem attivo"
 
-#: ..\libautoflashgui.py:134
 msgid "Splitting command up using semicolons"
 msgstr "Dividi comandi con punto e virgola"
 
-#: ..\libautoflashgui.py:137
 msgid "Sleeping..."
 msgstr "Sleep..."
 
-#: ..\libautoflashgui.py:140
 msgid "Please try a ssh connection now to "
 msgstr "Prova ora una connessione SSH verso "
 
-#: ..\libautoflashgui.py:140
-msgid ""
-" with username root and password root (change password immediately with "
-"passwd!)  Rebooting your modem now is recommended to stop any services that "
-"have been disabled."
-msgstr ""
-" con utente root e password root (cambia immediatamente la password con "
-"passwd!). Ora ti consiglio di riavviare il modem per interrompere tutti i "
-"servizi che sono stati disabilitati."
+msgid " with username root and password root (change password immediately with passwd!)  Rebooting your modem now is recommended to stop any services that have been disabled."
+msgstr " con utente root e password root (cambia immediatamente la password con passwd!). Ora ti consiglio di riavviare il modem per interrompere tutti i servizi che sono stati disabilitati."
 
-#: ..\mysrp.py:234
 msgid "Both n_hex and g_hex are required when ng_type = NG_CUSTOM"
 msgstr "Sono richiesti entrambi n_hex e g_hex qiando ng_type = NG_CUSTOM"
 
-#: ..\mysrp.py:236
 msgid "32 bytes required for bytes_a"
 msgstr "sono richiesti 32byte per bytes_a"

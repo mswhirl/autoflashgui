@@ -180,7 +180,7 @@ class Application(tk.Frame):
         self.commandChange()
 
     def pickFirmware(self):
-        fileName = tk.filedialog.askopenfilename(initialdir=firmwarePath, title=_("Please select firmware"), filetypes = [('RBI files', '*.rbi')])
+        fileName = tk.filedialog.askopenfilename(initialdir=firmwarePath, title=_("Please select firmware"), filetypes = [(_('RBI files'), '*.rbi')])
         self.firmwarefile.delete(0, tk.END)
         self.firmwarefile.insert(0, fileName)
 
