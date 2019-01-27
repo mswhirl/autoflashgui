@@ -26,14 +26,15 @@ def getDefaults(verbose=True):
         for line in f:
             if verbose:
                 print("Line:" + line.strip())
-            type,record = line.strip().split('=',maxsplit=1)
-            if type.startswith('default'):
-                configKey = type.replace("default","")
-                configKey = configKey[0:1].lower() + configKey[1:]
-                config[configKey] = record
-            elif type == 'variant':
-                vName, vMethod, vDDNS, vCommand = record.split(',',maxsplit=3)
-                defaultMethods[vName] = [vMethod, vDDNS, vCommand]
+            if not line.startswith("#"):
+                type,record = line.strip().split('=',maxsplit=1)
+                if type.startswith('default'):
+                    configKey = type.replace("default","")
+                    configKey = configKey[0:1].lower() + configKey[1:]
+                    config[configKey] = record
+                elif type == 'variant':
+                    vName, vMethod, vDDNS, vCommand = record.split(',',maxsplit=3)
+                    defaultMethods[vName] = [vMethod, vDDNS, vCommand]
     return config
 
 class Application(tk.Frame):
