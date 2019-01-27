@@ -8,10 +8,15 @@ import mysrp as srp
 from urllib.parse import urlencode
 import binascii, json, urllib, socket, time
 from robobrowser import RoboBrowser
-
 import liblang
-liblang.init_language()
-_ = liblang._
+
+# init_language():
+# Call this function with sys.argv and sys.path as the paramaters.
+# When used as a library, these are not available in the current context
+def init_language(argv, path, language):
+    liblang.init_language(argv, path, language)
+    global _
+    _ = liblang._
 
 def srp6authenticate(br, host, username, password):
     try:

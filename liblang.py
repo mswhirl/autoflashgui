@@ -5,43 +5,45 @@
 
 # This file is used to import the multilanguage code into all the scripts as required.
 
-import sys, os, locale
+import os, locale
 from pathlib import Path
 import gettext
 
 # ********************************** Define multi-langauge support
 def language_set(lan):
     global _
-    if (os.path.isdir(mydir + '/locale/' + lan)):
-        slan = gettext.translation('autoflashgui', localedir='locale', languages=[lan])
+    if os.path.isdir(os.path.join(mydir, 'locale', lan)):
+        slan = gettext.translation('autoflashgui', localedir=os.path.join(os.getcwd(), 'locale'), languages=[lan])
         slan.install()
+        # Convert local to global
+        _loc = _
+        _ = _loc
     else:
         _ = lambda s: s
 
-def language_default():
-    lan = 'EN'
+def language_default(argv):
+    lan = 'en'
     try:
-        if sys.argv[1] == '-l':
-            lan = sys.argv[2]
-            del sys.argv[1:3]
+        if argv[1] == '-l':
+            lan = argv[2]
     except:
         (lancode, lanenc) = locale.getdefaultlocale()
         lancode2=lancode[0:2]
-        if (os.path.isdir(mydir + '/locale/' + lancode)):
+        if os.path.isdir(os.path.join(mydir, 'locale', lancode)):
             lan = lancode
-        if (os.path.isdir(mydir + '/locale/' + lancode2)):
+        if os.path.isdir(os.path.join(mydir, 'locale', lancode2)):
             lan = lancode2
         else:
             lan = 'en'
     return lan
 
-def init_language():
+def init_language(argv, path, language):
     global mydir
-    # ********************************** Define startup folder
-    mydir    = sys.path[0]              # not correct on exe file from pyinstaller
-    mydir    = os.path.dirname(os.path.realpath(__file__))
+    mydir = path[0] # os.path.dirname(path[0])
     global lan
-    if not 'lan' in dir():
-        lan = language_default()
-        language_set(lan) 
-        print (_('UI language = ') + lan)
+    if language is not None:
+        lan = language
+    else:
+        lan = language_default(argv)
+    language_set(lan) 
+    print (_('UI language = ') + lan)
