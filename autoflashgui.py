@@ -21,11 +21,11 @@ def getDefaults(verbose=True):
     global defaultMethods
     defaultMethods = {}
     if verbose:
-        print("Reading config...")
+        print(_('Reading config...'))
     with open('defaults.ini', "r", 1048576, encoding='utf8') as f:
         for line in f:
             if verbose:
-                print("Line:" + line.strip())
+                print(_('Line: ') + line.strip())
             if not line.startswith("#"):
                 type,record = line.strip().split('=',maxsplit=1)
                 if type.startswith('default'):
@@ -91,7 +91,7 @@ class Application(tk.Frame):
 
         self.flashfirmware = tk.IntVar()
         self.flashfirmware.set(self.defaults['flashFirmware'])
-        tk.Checkbutton(self, text=_("Flash firmware?"), variable=self.flashfirmware, width=w).grid(row=rowOffset, column=2, sticky=tk.W)
+        tk.Checkbutton(self, text=_('Flash firmware?'), variable=self.flashfirmware, width=w).grid(row=rowOffset, column=2, sticky=tk.W)
         rowOffset += spacing
 
         self.expertMode = tk.IntVar()
@@ -130,7 +130,7 @@ class Application(tk.Frame):
 
         self.splitActive = tk.IntVar()
         self.splitActive.set(self.defaults['splitCommand'])
-        tk.Checkbutton(self, text=_("Split the given command on semicolons to try and use shorter commands with a 5 second delay between commands.  If an individual command fails it should not affect subsequent commands."), variable=self.splitActive, width=w, height=4, anchor=tk.W, justify=tk.LEFT, wraplength=400).grid(row=rowOffset, column=2, sticky=tk.W)
+        tk.Checkbutton(self, text=_('Split the given command on semicolons to try and use shorter commands with a 5 second delay between commands.  If an individual command fails it should not affect subsequent commands.'), variable=self.splitActive, width=w, height=4, anchor=tk.W, justify=tk.LEFT, wraplength=400).grid(row=rowOffset, column=2, sticky=tk.W)
         rowOffset += spacing
 
         self.runButton = tk.Button(self, text=_('Run'), command=self.run, width=w)
@@ -146,7 +146,7 @@ class Application(tk.Frame):
         return
 
     def variantChange(self, value):
-        print(_("Selected new variant "), value)
+        print(_('Selected new variant '), value)
         self.command.config(state='normal')
         self.command.delete(0, tk.END)
         self.command.insert(0, defaultMethods[value][2])
@@ -164,7 +164,7 @@ class Application(tk.Frame):
         self.commandChange()
 
     def pickFirmware(self):
-        fileName = tk.filedialog.askopenfilename(initialdir=firmwarePath, title=_("Please select firmware"), filetypes = [(_('RBI files'), '*.rbi')])
+        fileName = tk.filedialog.askopenfilename(initialdir=firmwarePath, title=_('Please select firmware'), filetypes = [(_('RBI files'), '*.rbi')])
         self.firmwarefile.delete(0, tk.END)
         self.firmwarefile.insert(0, fileName)
 
@@ -197,7 +197,7 @@ class Application(tk.Frame):
         except:
             maxLen = overallLen
         
-        self.lengthSummary.config(text=_('Overall %i, split maximum %i') % (overallLen, maxLen))
+        self.lengthSummary.config(text=_('Overall characters: ') + str (overallLen) + _(' - max characters for line: ') + str (maxLen))
         return True
 
 
@@ -239,5 +239,5 @@ if __name__=='__main__':
     
     app = Application()
     appversion="27.01.2018"
-    app.master.title(_("Technicolor modem flash and unlock utility (v. ") + appversion + _(") - By Mark Smith - License: GPLv3"))
+    app.master.title(_('Technicolor modem flash/unlock utility (v. ') + appversion + _(') - By Mark Smith'))
     app.mainloop()
