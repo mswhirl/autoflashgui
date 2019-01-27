@@ -2,7 +2,8 @@
 
 SET PROGRAM-NAME=autoflashgui
 SET FILE-NAME=autoflashgui
-
+SET CHARACTERS=400
+SET XGETTEXT-OPTIONS=--from-code=UTF-8 --no-location --width=%CHARACTERS% --no-wrap
 CLS
 ECHO *********************************************
 ECHO * %PROGRAM-NAME%
@@ -21,7 +22,7 @@ ECHO *********************************************
 ECHO.
 
 ECHO Creating master language template...
-xgettext -f python_files_Windows.txt -o ../locale/%FILE-NAME%.pot --from-code=UTF-8 > NUL
+xgettext %XGETTEXT-OPTIONS% -f python_files_Windows.txt -o ../locale/%FILE-NAME%.pot 
 ECHO Creating master language template completed!
 
 ECHO.
@@ -31,4 +32,6 @@ PAUSE > NUL
 
 SET PROGRAM-NAME=
 SET FILE-NAME=
+SET XGETTEXT-OPTIONS=
+SET CHARACTERS=
 
