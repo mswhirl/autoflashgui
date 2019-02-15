@@ -1,3 +1,4 @@
 ../autoflashgui.py
+../liblang.py
 ../libautoflashgui.py
 ../mysrp.py
