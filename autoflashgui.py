@@ -197,7 +197,9 @@ class Application(tk.Frame):
         except:
             maxLen = overallLen
         
-        self.lengthSummary.config(text=_('Overall characters: ') + str (overallLen) + _(' - max characters for line: ') + str (maxLen))
+        # Next line replaced due to language library restrictions where it can't handle standard substitution formatting?
+        #self.lengthSummary.config(text=_('Overall %i, split maximum %i') % (overallLen, maxLen))
+        self.lengthSummary.config(text=_('Overall ') + str(overallLen)  + _(', split maximum ') + str(maxLen))
         return True
 
 
@@ -238,6 +240,6 @@ if __name__=='__main__':
     libautoflashgui.init_language(sys.argv, sys.path, language)
     
     app = Application()
-    appversion="27.01.2018"
+    appversion="16.02.2018"
     app.master.title(_('Technicolor modem flash/unlock utility (v. ') + appversion + _(') - By Mark Smith'))
     app.mainloop()
