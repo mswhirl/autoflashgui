@@ -17,6 +17,8 @@ from pathlib import Path
 firmwarePath = 'firmware'
 
 def getDefaults(verbose=True):
+    if '_' not in dir():
+        _ = lambda x: x
     config = {}
     global defaultMethods
     defaultMethods = {}
