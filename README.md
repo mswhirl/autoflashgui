@@ -2,7 +2,7 @@
 
 Utility to flash firmware to modems and run setup commands after the flash has completed
 
-Please see https://whirlpool.net.au/wiki/hack_technicolor for the full guide for using the utility.
+Please see [hack-technicolor.readthedocs.io](https://hack-technicolor.readthedocs.io) for the full guide for using the utility.
 
 ## Installation
 
@@ -17,7 +17,6 @@ you can install it ahead of time like so:
 ```
 pip install robobrowser==0.5.3
 ```
-
 or else the code will fail to run.
 
 ## Running
@@ -30,3 +29,37 @@ python autoflashgui.py
 
 Keep the terminal or command prompt window it runs in visible; you'll need to
 refer to this in case of errors and to know the progress.
+
+## Compatibility
+
+AutoFlashGUI implements most common rooting strategies and is hereby described in detail. It has been tested working with some firmware's for various models. Unfortunately, most people gets root access on older firmware's then stop testing AutoFlashGUI on newer ones, so it's pretty difficult to maintain an updated list of tested firmware versions.
+
+ | Model Number    | Mnemonic | ISP Product Names
+ |:----------------|:---------|:--------------------------
+ | TG797n v3       | DANT-O   | Telstra T-Gateway
+ | TG789vac v2     | VANT-6   | -
+ | TG789vac (v1)   | VANT-D   | -
+ | TG799vac        | VANT-F   | Telstra Gateway Max
+ | TG799vac        | VANT-R   | Telia Trådlös router
+ | TG800vac        | VANT-Y   | Telstra Gateway Max 2
+ | TG789vac v3     | VBNT-1   | -
+ | TG799vac Xtream | VBNT-H   | -
+ | DJN2130         | VBNT-J   | Telstra Frontier Gateway
+ | TG789vac v2 HP  | VBNT-L   | MyRepublic WiFi Hub+
+ | DJA0231         | VCNT-A   | Telstra Smart Modem Gen2
+
+## Rooting example (Type 2)
+
+In this example we will be working with the `VANT-F` Gateway on `16.3.7567` which is a `Type 2` firmware.
+
+Using AutoFlashGUI, allow it to run through getting root. If you have changed any of the default settings (eg. Gateway IP, Web Interface Password), you must change the defaults in the AutoFlashGUI window. Leave "Flash firmware?" unchecked.
+
+![16.3 AFG](https://github.com/kevdagoat/hack-technicolor/raw/6323e2c0c155fc8aaa1394aff2b6527c8d837a14/docs/images/flashgui_16.3.png)
+
+If you are unable to fill your profile correctly or AutoFlashGUI is not working, have a look on your local forums for detailed model-specific root commands. If you manage to find a root command not listed in AutoFlashGUI, create an issue and we will get it added in. Being a `Type 2` firmware, a working root guide surely exists.
+
+Once AutoFlashGUI succeed, continue to [Final Type 2 steps](https://hack-technicolor.readthedocs.io/en/stable/Hack%20Type%201&2/#final-type-2-steps) on the wiki.
+
+## Flashing example (Type 1)
+
+Very similarly, you can use AutoFlashGUI to downgrade/upgrade a Type 1 image to another one. possibly of Type 2. In this case you need to check "Flash firmware?" option and pick a valid RBI to flash. This use case is better explained in the wiki for [rooting Type 1](https://hack-technicolor.readthedocs.io/en/stable/Hack%20Type%201&2/#type-1-flash-of-type-2-then-root) firmwares.
