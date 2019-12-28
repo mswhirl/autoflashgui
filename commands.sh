@@ -1,0 +1,1 @@
+sed -i 's#root:/bin/false#root:/bin/ash#' /etc/passwd;uci set dropbear.wan.enable='0';uci set dropbear.lan.enable='1';uci set dropbear.lan.PasswordAuth=on;uci set dropbear.lan.RootPasswordAuth=on;uci set dropbear.lan.RootLogin=1;uci set firewall.Allow_SSH_Vodafone_lan.target=ACCEPT;uci commit;/etc/init.d/firewall restart;/etc/init.d/dropbear restart;
