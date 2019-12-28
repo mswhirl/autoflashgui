@@ -51,6 +51,7 @@ You can grab a copy of a compatible firmware file from here. These files are ove
 Vodafone Ultrahub Plus VBNT-Z
 
 http://downloads.vodafone.co.nz/ultrahub-plus/UHP-2-0-1-Prod.rbi
+
 https://drive.google.com/uc?export=download&id=1fI971apBMPDv7-czSh6yEnH5e1ZQDj4S
 
 Vodafone Ultrahub VANT-9
