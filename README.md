@@ -26,6 +26,8 @@ or else the code will fail to run.
 
 ## Running
 
+Set your PC to static IP 192.168.1.100. This will be used as the server IP for the http call-back from the router to collect the shell script to do the magic. If you're on Windows, ensure you run as Administrator, allow python to open port 8000, and you may need to disable Windows firewall...
+
 To run the tool, do the following:
 
 ```
