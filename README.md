@@ -1,10 +1,10 @@
 # AutoFlashGUI forked for VANT-9 & VBNT-Z
 
+Utility to automate process to get ssh root access to Technicolor Vodafone Ultrahub (VANT-9) and Ultrahub plus (VBNT-Z) from New Zealand
+
 **Still experimental - a work in progress...**
 See: https://github.com/kevdagoat/hack-technicolor/issues/68
 and: https://github.com/mswhirl/autoflashgui/issues/28
-
-Utility to automate process to get ssh root access to Technicolor Vodafone Ultrahub (VANT-9) and Ultrahub plus (VBNT-Z) from New Zealand
 
 Please see [hack-technicolor.readthedocs.io](https://hack-technicolor.readthedocs.io) for the full guide for using the utility.
 
@@ -47,6 +47,7 @@ refer to this in case of errors and to know the progress.
  
 ## Firmware Downloads
 You can grab a copy of a compatible firmware file from here. These files are over the 25MB limit for github so are hosted elsewhere:
+
 Vodafone Ultrahub Plus VBNT-Z
 
 http://downloads.vodafone.co.nz/ultrahub-plus/UHP-2-0-1-Prod.rbi
