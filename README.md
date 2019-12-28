@@ -48,11 +48,14 @@ refer to this in case of errors and to know the progress.
 ## Firmware Downloads
 You can grab a copy of a compatible firmware file from here. These files are over the 25MB limit for github so are hosted elsewhere:
 Vodafone Ultrahub Plus VBNT-Z
+
 http://downloads.vodafone.co.nz/ultrahub-plus/UHP-2-0-1-Prod.rbi
 https://drive.google.com/uc?export=download&id=1fI971apBMPDv7-czSh6yEnH5e1ZQDj4S
 
 Vodafone Ultrahub VANT-9
-17.1.7988-2461009-20180510014336-RC2.4.6_prod_AUTH_vant-9 https://drive.google.com/uc?export=download&id=11ncIoTOvrUrIy2LQ4GA42b1gUeWJq_Li
+
+17.1.7988-2461009-20180510014336-RC2.4.6_prod_AUTH_vant-9
+https://drive.google.com/uc?export=download&id=11ncIoTOvrUrIy2LQ4GA42b1gUeWJq_Li
 
 ## Firmware Downgrade Process
 Its likely that your router will be on a newer firmware version that doesnt have the DDNS bug. So you may need to downgrade. AFAIK you have to do the downgrade using the TFTP process described here (because downgrading through the regular webUI isn't allowed): https://hack-technicolor.readthedocs.io/en/stable/Recovery/#set-up-tftp
