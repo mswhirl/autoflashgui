@@ -1,4 +1,6 @@
 # Technicolour modem flash and unlock script by Mark Smith (Whirlpool)
+# Forked to make a version that will work with Vodafone Ultrahub (VANT-9) and Ultrahub plus (VBNT-Z) from New Zealand
+# Forked at: https://github.com/jameskeenan295/autoflashgui
 # Distributed under GPLv3
 # Credits to DanielO for the initial work on using SRPv6 to log into these modems (see links below)
 # Requirements:
