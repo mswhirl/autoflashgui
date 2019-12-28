@@ -39,6 +39,7 @@ refer to this in case of errors and to know the progress.
 
 ## Compatibility
 
+This fork of AFG is aimed at directly rooting via a Type2 firmware that has the Vodafone DDNS bug:
 
 | Model Number    | Mnemonic | ISP Product Names         | Firmware Version
 |:----------------|:---------|:--------------------------|:--------------------------
