@@ -54,7 +54,7 @@ In this example we will be working with the `VANT-F` Gateway on `16.3.7567` whic
 
 Using AutoFlashGUI, allow it to run through getting root. If you have changed any of the default settings (eg. Gateway IP, Web Interface Password), you must change the defaults in the AutoFlashGUI window. Leave "Flash firmware?" unchecked.
 
-![16.3 AFG](https://github.com/kevdagoat/hack-technicolor/raw/6323e2c0c155fc8aaa1394aff2b6527c8d837a14/docs/images/flashgui_16.3.png)
+![AFG for Type 2](https://github.com/kevdagoat/hack-technicolor/raw/master/docs/images/autoflashgui_type2.png)
 
 If you are unable to fill your profile correctly or AutoFlashGUI is not working, have a look on your local forums for detailed model-specific root commands. If you manage to find a root command not listed in AutoFlashGUI, create an issue and we will get it added in. Being a `Type 2` firmware, a working root guide surely exists.
 
