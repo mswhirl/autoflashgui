@@ -1,6 +1,6 @@
 # AutoFlashGUI
 
-Utility to flash firmware to modems and run setup commands after the flash has completed
+Utility to inject commands and firmware upgrades via WebUI flaws of next-generation Technicolor gateways.
 
 Please see [hack-technicolor.readthedocs.io](https://hack-technicolor.readthedocs.io) for the full guide for using the utility.
 
