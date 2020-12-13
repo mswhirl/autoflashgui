@@ -11,11 +11,12 @@ rely on you having the Python executables on your PATH.  If Python isn't
 present on your PATH and you get a *not found* error, reference the
 executables using their absolute paths.
 
-The tool depends on the `robobrowser` package to be installed.  Either
+The tool depends on the `robobrowser` and `Werkzeug` packages to be installed.  Either
 you can install it ahead of time like so:
 
 ```
 pip install robobrowser==0.5.3
+pip install Werkzeug==0.16.1
 ```
 or else the code will fail to run.
 
