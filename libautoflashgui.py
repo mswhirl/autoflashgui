@@ -6,7 +6,8 @@
 
 import mysrp as srp
 from urllib.parse import urlencode
-import binascii, json, urllib, socket, time, sys, traceback
+import binascii, json, urllib, socket, time, sys, traceback, werkzeug
+werkzeug.cached_property = werkzeug.utils.cached_property
 from robobrowser import RoboBrowser
 import liblang
 
